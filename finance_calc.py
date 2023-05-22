@@ -1,5 +1,5 @@
 # Function to calculate future earnings
-def calculate_future_earnings(interest_rate, current_amount, timeframe, monthly_contributions):
+def calculate_compound_interest(interest_rate, current_amount, timeframe, monthly_contributions):
     monthly_interest_rate = interest_rate / 12 / 100
     future_amount = current_amount
     for _ in range(timeframe * 12):
@@ -12,7 +12,7 @@ def calculate_required_interest_rate(starting_amount, final_amount, timeframe, m
     required_interest_rate = 0.0
     epsilon = 0.0001
     while True:
-        future_amount = calculate_future_earnings(required_interest_rate, starting_amount, timeframe, monthly_contributions)
+        future_amount = calculate_compound_interest(required_interest_rate, starting_amount, timeframe, monthly_contributions)
         if abs(future_amount - final_amount) <= epsilon:
             return required_interest_rate * 12 * 100
         required_interest_rate += epsilon

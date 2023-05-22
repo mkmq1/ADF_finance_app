@@ -2,19 +2,19 @@ import streamlit as st
 from finance_calc import *
 
 # select widescreen layout and set page title
-st.set_page_config(page_title='Interest Rate Calculator', layout='wide')
+st.set_page_config(page_title='Financial Calculator', layout='wide')
 
 # print page title
-st.title("Interest Rate Calculator")
+st.title("Financial Calculator")
 
 # split into two columns
 col1, col2 = st.columns(2)
 
 # Option to calculate future earnings, desired timeframe, CAGR, or required interest rate
-option = col1.radio("Select Calculation", ("Calculate Future Earnings", "Calculate Timeframe", "Calculate CAGR", "Calculate Required Interest Rate"))
+option = col1.radio("Select Calculator", ("Compound Interest Calculator", "Time-to-Goal Calculator", "CAGR Calculator", "Target Interest Calculator"))
 
 # Calculate future earnings
-if option == "Calculate Future Earnings":
+if option == "Compound Interest Calculator":
     # get input from user
     interest_rate = col1.number_input('Yearly Interest Rate', min_value=0.0)
     current_amount = col1.number_input('Current Amount Invested', min_value=0.0)
@@ -22,7 +22,7 @@ if option == "Calculate Future Earnings":
     monthly_contributions = col1.number_input('Monthly Contributions', min_value=0.0)
 
     # calculate future earnings
-    future_earnings = calculate_future_earnings(interest_rate, current_amount, timeframe, monthly_contributions)
+    future_earnings = calculate_compound_interest(interest_rate, current_amount, timeframe, monthly_contributions)
 
     # display the result
     col1.markdown(f"Future Earnings: {future_earnings}")
@@ -36,7 +36,7 @@ if option == "Calculate Future Earnings":
         col1.text_input('Future Earnings', value='')
 
 # Calculate desired timeframe
-elif option == "Calculate Timeframe":
+elif option == "Time-to-Goal Calculator":
     # get input from user
     interest_rate = col1.number_input('Yearly Interest Rate', min_value=0.0)
     current_amount = col1.number_input('Current Amount Invested', min_value=0.0)
@@ -58,7 +58,7 @@ elif option == "Calculate Timeframe":
         col1.text_input('Timeframe (in years)', value='')
 
 # Calculate CAGR
-elif option == "Calculate CAGR":
+elif option == "CAGR Calculator":
     col1.markdown("Enter the yearly interest rates:")
 
     # get input from user
@@ -82,7 +82,7 @@ elif option == "Calculate CAGR":
             col1.text_input(f'Year {i+1}', value='')
 
 # Calculate required interest rate
-elif option == "Calculate Required Interest Rate":
+elif option == "Target Interest Calculator":
     # get input from user
     starting_amount = col1.number_input('Starting Amount', min_value=0.0)
     final_amount = col1.number_input('Final Amount', min_value=0.0)
