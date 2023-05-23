@@ -10,33 +10,11 @@ st.title("Financial Calculator")
 # split into two columns
 col1, col2 = st.columns(2)
 
-# Option to calculate future earnings, desired timeframe, CAGR, or required interest rate
-option = col1.radio("Select Calculator", ("Compound Interest Calculator", "Time-to-Goal Calculator", "CAGR Calculator", "Target Interest Calculator"))
-
-# Calculate future earnings
-if option == "Compound Interest Calculator":
-    # get input from user
-    interest_rate = col1.number_input('Yearly Interest Rate', min_value=0.0)
-    current_amount = col1.number_input('Current Amount Invested', min_value=0.0)
-    timeframe = int(col1.number_input('Timeframe (in years)', min_value=0))
-    monthly_contributions = col1.number_input('Monthly Contributions', min_value=0.0)
-
-    # calculate future earnings
-    future_earnings = calculate_compound_interest(interest_rate, current_amount, timeframe, monthly_contributions)
-
-    # display the result
-    col1.markdown(f"Future Earnings: {future_earnings}")
-
-    # reset the input fields
-    if col1.button('Reset'):
-        col1.text_input('Yearly Interest Rate', value='')
-        col1.text_input('Current Amount Invested', value='')
-        col1.text_input('Timeframe (in years)', value='')
-        col1.text_input('Monthly Contributions', value='')
-        col1.text_input('Future Earnings', value='')
+# Option to calculate desired timeframe, CAGR, or required interest rate
+option = col1.radio("Select Calculator", ("Time-to-Goal Calculator", "CAGR Calculator", "Target Interest Calculator"))
 
 # Calculate desired timeframe
-elif option == "Time-to-Goal Calculator":
+if option == "Time-to-Goal Calculator":
     # get input from user
     interest_rate = col1.number_input('Yearly Interest Rate', min_value=0.0)
     current_amount = col1.number_input('Current Amount Invested', min_value=0.0)

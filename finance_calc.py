@@ -1,11 +1,3 @@
-# Function to calculate future earnings
-def calculate_compound_interest(interest_rate, current_amount, timeframe, monthly_contributions):
-    monthly_interest_rate = interest_rate / 12 / 100
-    future_amount = current_amount
-    for _ in range(timeframe * 12):
-        future_amount = (future_amount + monthly_contributions) * (1 + monthly_interest_rate)
-    return future_amount
-
 # Function to calculate the required interest rate to reach a desired amount within a timeframe
 def calculate_required_interest_rate(starting_amount, final_amount, timeframe, monthly_contributions):
     monthly_interest_rate = 0.0
